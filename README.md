@@ -1,1 +1,1 @@
-# ca-tenate-law-rag
+# ca-tenant-law-rag
