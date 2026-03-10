@@ -1,6 +1,9 @@
 # The data folder pre-processing
 pubinfo_2025/
 
+# Vector db
+chroma_db/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
