@@ -1,3 +1,5 @@
+"""Embeds California Civil Code sections into a Chroma vector database."""
+
 import os
 import chromadb
 from sentence_transformers import SentenceTransformer
@@ -11,6 +13,7 @@ MODEL_NAME = "all-MiniLM-L6-v2"
 
 
 def embed_chunks():
+    """Embed all tenant rights chunks and stores them in Chroma."""
     model = SentenceTransformer(MODEL_NAME)
 
     chunks = build_chunks()
@@ -19,7 +22,7 @@ def embed_chunks():
 
     try:
         client.delete_collection("tenant_rights")
-    except:
+    except ValueError:
         pass
 
     collection = client.create_collection("tenant_rights")
@@ -41,8 +44,8 @@ def embed_chunks():
             ],
         )
         print(f"{chunk['section_num']} OK")
-    
     print(f"\nDone - {collection.count()} chunks stored in Chroma")
+
 
 if __name__ == "__main__":
     embed_chunks()

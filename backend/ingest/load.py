@@ -1,3 +1,5 @@
+"""Loads and filters California Civil Code sections from the pubinfo dataset."""
+
 import os
 import pandas as pd
 from dotenv import load_dotenv
@@ -6,10 +8,15 @@ from parse import parse_lob
 load_dotenv()
 
 PUBINFO_DIR = os.getenv("PUBINFO_DIR", "../../pubinfo_2025")
-CA_LEGINFO_URL = 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum='
+CA_LEGINFO_URL = (
+    "https://leginfo.legislature.ca.gov"
+    "/faces/codes_displaySection.xhtml"
+    "?lawCode=CIV&sectionNum="
+)
 
 
 def load_tenant_sections(pubinfo_dir: str = PUBINFO_DIR) -> pd.DataFrame:
+    """Filters LAW_SECTION_TBL to Civil Code sections 1940-1954."""
     df = pd.read_csv(
         os.path.join(pubinfo_dir, "LAW_SECTION_TBL.dat"),
         sep="\t",
@@ -47,6 +54,7 @@ def load_tenant_sections(pubinfo_dir: str = PUBINFO_DIR) -> pd.DataFrame:
 
 
 def build_chunks(pubinfo_dir: str = PUBINFO_DIR) -> list[dict]:
+    """Parse all tenant rights sections into embeddable chunks."""
     tenant = load_tenant_sections(pubinfo_dir)
     chunks = []
 
@@ -67,7 +75,7 @@ def build_chunks(pubinfo_dir: str = PUBINFO_DIR) -> list[dict]:
                 "citation_url": CA_LEGINFO_URL + section_num,
             }
             chunks.append(chunk)
-        except Exception as e:
+        except (FileNotFoundError, ValueError) as e:
             print(f"{section_num} - {e}")
 
     return chunks

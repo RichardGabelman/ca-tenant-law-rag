@@ -1,12 +1,20 @@
+"""Parses California Legislative LOB files into structured text."""
+
 from bs4 import BeautifulSoup
 
 
-def parse_lob(lob_path):
-    with open("pubinfo_2025/" + lob_path, "r", encoding="latin-1") as f:
-        content = f.read()
+def parse_lob(lob_path: str) -> dict:
+    """
+    Parse a California Legislative LOB file into structured text.
 
-    # Fix curly quote encoding artifacts
-    content = content.replace("â", '"').replace("â", '"').replace("â", "'")
+    Returns:
+        {
+            'full_text': str,
+            'subdivisions': list[str]
+        }
+    """
+    with open(lob_path, "rb") as f:
+        content = f.read().decode("utf-8", errors="replace")
 
     soup = BeautifulSoup(content, "xml")
     paragraphs = soup.find_all("p")
