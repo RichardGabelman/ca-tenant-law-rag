@@ -6,6 +6,7 @@ from parse import parse_lob
 load_dotenv()
 
 PUBINFO_DIR = os.getenv("PUBINFO_DIR", "../../pubinfo_2025")
+CA_LEGINFO_URL = 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum='
 
 
 def load_tenant_sections(pubinfo_dir: str = PUBINFO_DIR) -> pd.DataFrame:
@@ -63,7 +64,7 @@ def build_chunks(pubinfo_dir: str = PUBINFO_DIR) -> list[dict]:
                 else "",
                 "full_text": parsed["full_text"],
                 "subdivisions": parsed["subdivisions"],
-                "citation_url": f"https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum={section_num}",
+                "citation_url": CA_LEGINFO_URL + section_num,
             }
             chunks.append(chunk)
         except Exception as e:
