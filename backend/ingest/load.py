@@ -66,7 +66,6 @@ def build_chunks(pubinfo_dir: str = PUBINFO_DIR) -> list[dict]:
                 "citation_url": f"https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum={section_num}",
             }
             chunks.append(chunk)
-            print(f"{section_num} OK")
         except Exception as e:
             print(f"{section_num} - {e}")
 
