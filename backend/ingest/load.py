@@ -5,7 +5,7 @@ from parse import parse_lob
 
 load_dotenv()
 
-PUBINFO_DIR = os.getenv("PUBINFO_DIR")
+PUBINFO_DIR = os.getenv("PUBINFO_DIR", "../../pubinfo_2025")
 
 
 def load_tenant_sections(pubinfo_dir: str = PUBINFO_DIR) -> pd.DataFrame:
