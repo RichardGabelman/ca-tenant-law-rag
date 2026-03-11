@@ -8,7 +8,7 @@ from load import build_chunks
 
 load_dotenv()
 
-CHROMA_DIR = os.getenv("CHROMA_DIR", "../chroma_dub")
+CHROMA_DIR = os.getenv("CHROMA_DIR", "../chroma_db")
 MODEL_NAME = "all-MiniLM-L6-v2"
 
 
