@@ -4,12 +4,13 @@ export default function ResultCard({ result }) {
   return (
     <div className="result-card">
       <div className="card-header">
-        <span className="section-badge">§ {result.section_num}</span>
+        <h2 className="section-badge">§ {result.section_num}</h2>
         <a
           href={result.citation_url}
           className="citation-link"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`View § ${result.section_num} on leginfo.legislature.ca.gov`}
         >
           leginfo.legislature.ca.gov ↗
         </a>
