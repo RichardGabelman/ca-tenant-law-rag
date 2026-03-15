@@ -21,7 +21,7 @@
   font-size: 0.95rem;
   line-height: 1.6;
   padding: 1rem 1.1rem;
-  resize: vertical;
+  resize: none;
   min-height: 120px;
   transition: border-color 0.2s;
   outline: none;
