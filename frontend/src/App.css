@@ -9,9 +9,14 @@
 
 :root {
   --bg-base: #1C1A17;
+  --bg-surface: #242118;
   --text-primary: #F0EBE1;
   --text-secondary: #C4B49A;
+  --text-muted: #8A7A6A;
   --accent: #C4723A;
+  --accent-btn: #A85E2A;
+  --accent-soft: #8A7A6A;
+  --border: #3A342C;
 }
 
 body {
@@ -27,4 +32,10 @@ body {
   max-width: 760px;
   margin: 0 auto;
   padding: 3rem 1.5rem 6rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
 }

@@ -1,0 +1,73 @@
+.input-section {
+  margin-bottom: 2.5rem;
+}
+
+.input-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.02rem;
+}
+
+.situation-input {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  padding: 1rem 1.1rem;
+  resize: vertical;
+  min-height: 120px;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.situation-input::placeholder {
+  color: var(--text-muted);
+}
+
+.situation-input:focus {
+  border-color: var(--accent-soft);
+}
+
+.input-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.disclaimer {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 430px;
+  line-height: 1.5;
+}
+
+.submit-btn {
+  background: var(--accent-btn);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.4rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.submit-btn:hover {
+  background: #D47F45;
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+}
