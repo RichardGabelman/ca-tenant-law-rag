@@ -1,0 +1,15 @@
+.results-header {
+  margin-bottom: 1.25rem;
+}
+
+.results-count {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+}
+
+.results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

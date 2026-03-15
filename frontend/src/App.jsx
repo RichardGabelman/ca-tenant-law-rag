@@ -15,6 +15,11 @@ function App() {
         citation_url: "google.com",
         raw_text: "raw legislation text",
       },
+      {
+        section_num: 68,
+        citation_url: "google.com",
+        raw_text: "raw legislation text two",
+      },
     ]);
     console.log("submitted! (placeholder)");
   }
