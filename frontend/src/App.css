@@ -10,6 +10,8 @@
 :root {
   --bg-base: #1C1A17;
   --text-primary: #F0EBE1;
+  --text-secondary: #C4B49A;
+  --accent: #C4723A;
 }
 
 body {
@@ -22,7 +24,7 @@ body {
 }
 
 #root {
-  max-width: 900px;
+  max-width: 760px;
   margin: 0 auto;
   padding: 3rem 1.5rem 6rem;
 }
