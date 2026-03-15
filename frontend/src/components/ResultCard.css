@@ -1,0 +1,63 @@
+.result-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.result-card:hover {
+  border-color: var(--border-accent);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-num {
+  padding-top: 0.1rem;
+}
+
+.section-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--accent);
+  background: rgba(196, 114, 58, 0.15);
+  border: 1px solid rgba(196, 114, 58, 0.2);
+  border-radius: 4px;
+  padding: 0.2rem 0.55rem;
+  margin: 0;
+}
+
+.citation-link {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.citation-link:hover {
+  color: var(--accent);
+}
+
+.card-body {
+  padding: 1rem 1.1rem;
+}
+
+.raw-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

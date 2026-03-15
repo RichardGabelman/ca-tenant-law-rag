@@ -4,7 +4,10 @@ export default function ResultCard({ result }) {
   return (
     <div className="result-card">
       <div className="card-header">
-        <h2 className="section-badge">§ {result.section_num}</h2>
+        <h2 className="section-badge">
+          <span>§</span>
+          <span className="section-num">{result.section_num}</span>
+        </h2>
         <a
           href={result.citation_url}
           className="citation-link"
