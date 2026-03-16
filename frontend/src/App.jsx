@@ -4,24 +4,33 @@ import Header from "./components/Header.jsx";
 import QueryInput from "./components/QueryInput.jsx";
 import ResultsList from "./components/ResultsList.jsx";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 function App() {
   const [situation, setSituation] = useState("");
   const [results, setResults] = useState(null);
+  const [error, setError] = useState(null);
 
   async function handleSubmit() {
-    setResults([
-      {
-        section_num: 67,
-        citation_url: "google.com",
-        raw_text: "raw legislation text",
-      },
-      {
-        section_num: 68,
-        citation_url: "google.com",
-        raw_text: "raw legislation text two",
-      },
-    ]);
-    console.log("submitted! (placeholder)");
+    setResults(null);
+
+    try {
+      const res = await fetch(`${API_URL}/query`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ situation }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.detail || "Something went wrong.");
+      }
+
+      setResults(data.results);
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   return (
@@ -33,6 +42,7 @@ function App() {
         onSubmit={handleSubmit}
       />
       <div aria-live="polite" aria-atomic="true">
+        {error && <div className="error-msg">{error}</div>}
         {results && <ResultsList results={results} />}
       </div>
     </>
