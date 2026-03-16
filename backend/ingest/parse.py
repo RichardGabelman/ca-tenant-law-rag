@@ -26,6 +26,7 @@ def parse_lob(lob_path: str) -> dict:
         for span in p.find_all("span"):
             span.decompose()
         text = p.get_text(strip=True)
+        text = " ".join(text.split())
         if text:
             subdivisions.append(text)
             full_text_parts.append(text)
