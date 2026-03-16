@@ -1,6 +1,7 @@
 import os
 import chromadb
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
@@ -8,8 +9,18 @@ from dotenv import load_dotenv
 load_dotenv()
 
 CHROMA_DIR = os.getenv("CHROMA_DIR", "../chroma_db")
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173")
+
+origins = [origin.strip() for origin in ALLOWED_ORIGINS.split(",")]
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_methods=["POST"],
+    allow_headers=["Content-Type"],
+)
 
 model = SentenceTransformer("all-MiniLM-l6-v2")
 chroma_client = chromadb.PersistentClient(path=CHROMA_DIR)
