@@ -1,5 +1,12 @@
 import "./QueryInput.css";
 
+const EXAMPLE_PROMPTS = [
+  "My landlord hasn't returned my security deposit after 45 days",
+  "My heater has been broken for weeks and my landlord won't fix it",
+  "My landlord wants to enter my apartment tomorrow with no notice",
+  "My landlord raised my rent by 15% with no warning",
+];
+
 export default function QueryInput({
   situation,
   setSituation,
@@ -34,6 +41,17 @@ export default function QueryInput({
         <button className="submit-btn" onClick={onSubmit} disabled={loading}>
           {loading ? "Searching..." : "Find relevant law"}
         </button>
+      </div>
+      <div className="example-prompts">
+        {EXAMPLE_PROMPTS.map((prompt) => (
+          <button
+            key={prompt}
+            className="prompt-btn"
+            onClick={() => setSituation(prompt)}
+          >
+            {prompt}
+          </button>
+        ))}
       </div>
     </section>
   );
