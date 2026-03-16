@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header.jsx";
 import QueryInput from "./components/QueryInput.jsx";
 import ResultsList from "./components/ResultsList.jsx";
+import SkeletonLoader from "./components/SkeletonLoader.jsx";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
@@ -48,6 +49,7 @@ function App() {
       />
       <div aria-live="polite" aria-atomic="true">
         {error && <div className="error-msg">{error}</div>}
+        {loading && <SkeletonLoader />}
         {results && <ResultsList results={results} />}
       </div>
     </>
