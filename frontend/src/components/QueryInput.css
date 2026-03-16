@@ -71,3 +71,9 @@
 .submit-btn:active {
   transform: scale(0.98);
 }
+
+.submit-btn:disabled {
+  background: var(--accent-soft);
+  cursor: not-allowed;
+  opacity: 0.6;
+}

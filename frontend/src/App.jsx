@@ -10,8 +10,10 @@ function App() {
   const [situation, setSituation] = useState("");
   const [results, setResults] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit() {
+    setLoading(true);
     setResults(null);
 
     try {
@@ -30,6 +32,8 @@ function App() {
       setResults(data.results);
     } catch (err) {
       setError(err.message);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -40,6 +44,7 @@ function App() {
         situation={situation}
         setSituation={setSituation}
         onSubmit={handleSubmit}
+        loading={loading}
       />
       <div aria-live="polite" aria-atomic="true">
         {error && <div className="error-msg">{error}</div>}

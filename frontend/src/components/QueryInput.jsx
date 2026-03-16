@@ -1,6 +1,11 @@
 import "./QueryInput.css";
 
-export default function QueryInput({ situation, setSituation, onSubmit }) {
+export default function QueryInput({
+  situation,
+  setSituation,
+  onSubmit,
+  loading,
+}) {
   function handleKeyDown(e) {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -26,8 +31,8 @@ export default function QueryInput({ situation, setSituation, onSubmit }) {
           Covers California Civil Code §§ 1940–1954. Local ordinances may
           provide additional protections. Shift + ↵ for a new line.
         </p>
-        <button className="submit-btn" onClick={onSubmit}>
-          Find relevant law
+        <button className="submit-btn" onClick={onSubmit} disabled={loading}>
+          {loading ? "Searching..." : "Find relevant law"}
         </button>
       </div>
     </section>
