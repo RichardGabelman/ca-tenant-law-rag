@@ -3,7 +3,7 @@
 import os
 import pandas as pd
 from dotenv import load_dotenv
-from parse import parse_lob
+from ingest.parse import parse_lob
 
 load_dotenv()
 
