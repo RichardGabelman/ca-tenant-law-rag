@@ -10,7 +10,7 @@ load_dotenv()
 
 CHROMA_DIR = os.getenv("CHROMA_DIR", "../chroma_db")
 ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173")
-SIMILARITY_THRESHOLD = 0.5
+SIMILARITY_THRESHOLD = 0.3
 
 origins = [origin.strip() for origin in ALLOWED_ORIGINS.split(",")]
 
