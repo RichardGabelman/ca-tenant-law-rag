@@ -64,10 +64,12 @@ def query(request: QueryRequest):
     output = []
 
     for metadata, distance in zip(results["metadatas"][0], results["distances"][0]):
+        section_num = str(metadata["section_num"])
+        score = round(1 - distance, 3)
+
         if distance > SIMILARITY_THRESHOLD:
             continue
 
-        section_num = str(metadata["section_num"])
         if section_num in seen:
             continue
         seen.add(section_num)
@@ -77,8 +79,8 @@ def query(request: QueryRequest):
                 section_num=section_num,
                 citation_url=str(metadata["citation_url"]),
                 raw_text=str(metadata["raw_text"]),
-                summary=str(metadata["raw_text"]),
-                score=round(1 - distance, 3),
+                summary=str(metadata["summary"]),
+                score=score,
             )
         )
 
