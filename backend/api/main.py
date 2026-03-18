@@ -1,6 +1,6 @@
 import os
 import chromadb
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
@@ -10,6 +10,7 @@ load_dotenv()
 
 CHROMA_DIR = os.getenv("CHROMA_DIR", "../chroma_db")
 ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173")
+SIMILARITY_THRESHOLD = 0.5
 
 origins = [origin.strip() for origin in ALLOWED_ORIGINS.split(",")]
 
@@ -35,6 +36,8 @@ class SectionResult(BaseModel):
     section_num: str
     citation_url: str
     raw_text: str
+    summary: str
+    score: float
 
 
 class QueryResponse(BaseModel):
@@ -43,24 +46,43 @@ class QueryResponse(BaseModel):
 
 @app.post("/query", response_model=QueryResponse)
 def query(request: QueryRequest):
+    if not request.situation:
+        raise HTTPException(status_code=400, detail="Please describe your situation.")
+
     query_embedding = model.encode(request.situation).tolist()
 
     results = collection.query(
         query_embeddings=[query_embedding],
-        n_results=5,
+        n_results=25,
         include=["documents", "metadatas", "distances"],
     )
     assert results["documents"] is not None
     assert results["metadatas"] is not None
+    assert results["distances"] is not None
 
+    seen: set[str] = set()
     output = []
-    for doc, metadata in zip(results["documents"][0], results["metadatas"][0]):
+
+    for metadata, distance in zip(results["metadatas"][0], results["distances"][0]):
+        if distance > SIMILARITY_THRESHOLD:
+            continue
+
+        section_num = str(metadata["section_num"])
+        if section_num in seen:
+            continue
+        seen.add(section_num)
+
         output.append(
             SectionResult(
-                section_num=str(metadata["section_num"]),
+                section_num=section_num,
                 citation_url=str(metadata["citation_url"]),
-                raw_text=doc,
+                raw_text=str(metadata["raw_text"]),
+                summary=str(metadata["raw_text"]),
+                score=round(1 - distance, 3),
             )
         )
+
+        if len(output) == 5:
+            break
 
     return QueryResponse(results=output)
