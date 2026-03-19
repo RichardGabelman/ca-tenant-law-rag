@@ -28,15 +28,21 @@ export default function ResultsList({ results }) {
           </button>
         </div>
       </div>
-      <div className="results-list">
-        {results.map((result) => (
-          <ResultCard
-            key={result.section_num}
-            result={result}
-            viewMode={viewMode}
-          />
-        ))}
-      </div>
+      {results.length === 0 ? (
+        <p className="no-results">
+          No sections found - try reducing the minimum match score.
+        </p>
+      ) : (
+        <div className="results-list">
+          {results.map((result) => (
+            <ResultCard
+              key={result.section_num}
+              result={result}
+              viewMode={viewMode}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 }
