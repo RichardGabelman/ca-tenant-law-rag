@@ -4,14 +4,20 @@ import Header from "./components/Header.jsx";
 import QueryInput from "./components/QueryInput.jsx";
 import ResultsList from "./components/ResultsList.jsx";
 import SkeletonLoader from "./components/SkeletonLoader.jsx";
+import ScoreSlider from "./components/ScoreSlider.jsx";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 function App() {
+  const [minScore, setMinScore] = useState(0.65);
   const [situation, setSituation] = useState("");
   const [results, setResults] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const filteredResults = results
+    ? results.filter((r) => r.score >= minScore)
+    : null;
 
   async function handleSubmit() {
     setLoading(true);
@@ -50,7 +56,12 @@ function App() {
       <div aria-live="polite" aria-atomic="true">
         {error && <div className="error-msg">{error}</div>}
         {loading && <SkeletonLoader />}
-        {results && <ResultsList results={results} />}
+        {results && (
+          <>
+            <ScoreSlider minScore={minScore} setMinScore={setMinScore} />
+            <ResultsList results={filteredResults} />
+          </>
+        )}
       </div>
     </>
   );

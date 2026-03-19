@@ -10,7 +10,6 @@ load_dotenv()
 
 CHROMA_DIR = os.getenv("CHROMA_DIR", "../chroma_db")
 ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173")
-SIMILARITY_THRESHOLD = 0.3
 
 origins = [origin.strip() for origin in ALLOWED_ORIGINS.split(",")]
 
@@ -53,7 +52,7 @@ def query(request: QueryRequest):
 
     results = collection.query(
         query_embeddings=[query_embedding],
-        n_results=25,
+        n_results=50,
         include=["documents", "metadatas", "distances"],
     )
     assert results["documents"] is not None
@@ -66,9 +65,6 @@ def query(request: QueryRequest):
     for metadata, distance in zip(results["metadatas"][0], results["distances"][0]):
         section_num = str(metadata["section_num"])
         score = round(1 - distance, 3)
-
-        if distance > SIMILARITY_THRESHOLD:
-            continue
 
         if section_num in seen:
             continue
@@ -83,8 +79,5 @@ def query(request: QueryRequest):
                 score=score,
             )
         )
-
-        if len(output) == 5:
-            break
 
     return QueryResponse(results=output)
