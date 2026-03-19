@@ -1,4 +1,7 @@
 .results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1.25rem;
 }
 
@@ -6,6 +9,35 @@
   font-size: 1rem;
   color: var(--text-muted);
   font-family: 'DM Mono', monospace;
+}
+
+.toggle-group {
+  display: flex;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.toggle-btn.active {
+  background: var(--bg-card);
+  color: var(--text-secondary);
+}
+
+.toggle-btn:hover {
+  color: var(--text-secondary);
 }
 
 .results-list {
