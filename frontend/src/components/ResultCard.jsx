@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ResultCard.css";
 
-const PREVIEW_SIZE = 550
+const PREVIEW_SIZE = 550;
 
 export default function ResultCard({ result, viewMode }) {
   const [expanded, setExpanded] = useState(false);
@@ -14,10 +14,15 @@ export default function ResultCard({ result, viewMode }) {
   return (
     <div className="result-card">
       <div className="card-header">
-        <h2 className="section-badge">
-          <span>§</span>
-          <span className="section-num">{result.section_num}</span>
-        </h2>
+        <div className="card-header-left">
+          <h2 className="section-badge">
+            <span>§</span>
+            <span className="section-num">{result.section_num}</span>
+          </h2>
+          <span className="score-badge">
+            {Math.round(result.score * 100)}% match
+          </span>
+        </div>
         <a
           href={result.citation_url}
           className="citation-link"

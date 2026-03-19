@@ -18,6 +18,12 @@
   border-bottom: 1px solid var(--border);
 }
 
+.card-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .section-num {
   padding-top: 0.1rem;
 }
@@ -35,6 +41,12 @@
   border-radius: 4px;
   padding: 0.2rem 0.55rem;
   margin: 0;
+}
+
+.score-badge {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
 .citation-link {
