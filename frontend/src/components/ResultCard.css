@@ -63,7 +63,6 @@
 }
 
 .summary-text {
-  font-family: 'DM Sans', sans-serif;
   font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.7;
@@ -73,7 +72,6 @@
   background: none;
   border: none;
   color: var(--accent);
-  font-family: 'DM Sans', sans-serif;
   font-size: 0.8rem;
   cursor: pointer;
   padding: 0.5rem 0 0;
