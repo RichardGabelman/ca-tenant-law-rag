@@ -20,12 +20,15 @@
   --accent-soft: #8A7A6A;
   --border: #3A342C;
   --border-accent: #5a4030;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-serif: 'Lora', serif;
+  --font-mono: 'DM Mono', monospace;
 }
 
 body {
   background: var(--bg-base);
   color: var(--text-primary);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-weight: 400;
   min-height: 100vh;
   line-height: 1.6;

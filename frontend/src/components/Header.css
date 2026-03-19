@@ -3,7 +3,7 @@
 }
 
 .header-eyebrow {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -12,7 +12,7 @@
 }
 
 .header-title {
-  font-family: 'Lora', serif;
+  font-family: var(--font-serif);
   font-size: 2.2rem;
   font-weight: 600;
   color: var(--text-primary);
