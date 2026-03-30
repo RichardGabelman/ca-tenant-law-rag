@@ -102,7 +102,8 @@ At query time, the user's input is encoded into the same vector space and compar
 - ChromaDB
 - Sentence Transformers
 - Groq
-- Hosted on ![Hetzner Badge](https://img.shields.io/badge/Hetzner-D50C2D?logo=hetzner&logoColor=fff&style=for-the-badge)
+- Frontend hosted on ![Vercel Badge](https://img.shields.io/badge/Vercel-000?logo=vercel&logoColor=fff&style=for-the-badge)
+- Backend hosted on a <span>  </span> ![Hetzner Badge](https://img.shields.io/badge/Hetzner-D50C2D?logo=hetzner&logoColor=fff&style=for-the-badge) vps
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
