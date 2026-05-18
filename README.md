@@ -79,6 +79,9 @@
   </a>
 </div>
 
+<br />
+<br />
+
 <p>
 California tenant law is dense, scattered across different code sections, and difficult to navigate without a legal background. Renters facing issues with deposits, habitability, evictions, or lease disputes often don't know where to start or even what questions to ask.
 </p>
