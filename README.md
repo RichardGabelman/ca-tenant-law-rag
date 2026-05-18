@@ -73,7 +73,11 @@
 
 ## About The Project
 
-[![California Tenant Rights RAG Screen Shot][product-screenshot]](images/page_screenshot.png)
+<div align="center">
+  <a href="https://calitenantrights.richardgabelman.com">
+    <img src="images/page_screenshot.png" alt="California Tenant Rights RAG UI">
+  </a>
+</div>
 
 <p>
 California tenant law is dense, scattered across different code sections, and difficult to navigate without a legal background. Renters facing issues with deposits, habitability, evictions, or lease disputes often don't know where to start or even what questions to ask.
