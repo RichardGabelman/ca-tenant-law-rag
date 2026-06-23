@@ -39,7 +39,7 @@ export default function QueryInput({
           provide additional protections. Shift + ↵ for a new line.
         </p>
         <button className="submit-btn" onClick={onSubmit} disabled={loading}>
-          {loading ? "Searching..." : "Find relevant law"}
+          {loading ? "Thinking..." : "Ask"}
         </button>
       </div>
       <div className="example-prompts">
