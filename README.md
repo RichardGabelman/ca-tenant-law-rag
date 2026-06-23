@@ -36,7 +36,7 @@
 <h3 align="center">California Tenant Rights RAG</h3>
 
   <p align="center">
-    A RAG-powered web app that helps California tenants understand their legal rights. Describe your situation in plain English and get back the most relevant sections of California law, ranked by semantic similarity, with citation links and AI-generated summaries.
+    A RAG-powered web app that helps California tenants understand their legal rights. Describe your situation in plain English and get a cited, AI-generated answer drawn from the most relevant sections of California law, with source cards linking directly to the official legislative code.
     <br />
     <br />
     <a href="https://calitenantrights.richardgabelman.com">View Live</a>
@@ -87,15 +87,11 @@ California tenant law is dense, scattered across different code sections, and di
 </p>
 
 <p>
-<b>California Tenant Rights RAG</b> makes that body of law searchable in plain English. Describe your situation and the app surfaces the most relevant sections of the California Civil and Health & Safety Code, ranked by semantic similarity to your query, with citation links and AI-generated plain-language summaries so you can understand what the law says.
+<b>California Tenant Rights RAG</b> makes that body of law searchable in plain English. Describe your situation and the app returns a plain-language answer citing the specific sections of the California Civil and Health & Safety Code it drew from, alongside source cards with direct links to the official legislative text.
 </p>
 
 <p>
-Under the hood, the full California legislative dataset is preprocessed. The relevant code sections are parsed and loaded into chunks. These chunks are fed into an LLM with a prompt to create plain-language summaries and example questions that would be answered by that section. The raw code sections and the generated summaries and questions are then embedded into a ChromaDB vector store using Sentence Transformers.
-</p>
-
-<p>
-At query time, the user's input is encoded into the same vector space and compared against the stored embeddings using cosine similarity. The top results are deduplicated by section and returned via a FastAPI backend to a React frontend.
+Under the hood, the relevant code sections are parsed, chunked, and embedded into a ChromaDB vector store using Sentence Transformers. At query time, the user's question is encoded into the same vector space and compared against stored embeddings using cosine similarity. The top matching sections are retrieved, deduplicated by section number, and passed as context to a Groq-hosted LLM, which synthesizes a grounded answer and returns the specific sections it cited. The FastAPI backend returns the answer, cited section numbers, and full source metadata to the React frontend.
 </p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -124,7 +120,7 @@ To get a local copy up and running follow these steps.
 
 - Python 3.10+
 - Node.js 18+
-- A Groq API key, only needed if you plan to re-run the ingestion pipeline, not required to run the app
+- A Groq API key.
 
 ### Installation
 
@@ -185,14 +181,14 @@ The app will be running at `http://localhost:5173`.
 
 ## Usage
 
-Enter a plain-English description of your situation in the search box and submit. The app will return the most relevant sections of California tenant law ranked by semantic similarity to your query, each with:
+Enter a plain-English description of your situation and submit. The app returns:
 
-- The section number and a direct citation link to the official California legislative code
-- The raw legal text of the section
-- An AI-generated plain-language summary
+- A plain-language answer synthesized from the most relevant sections of California tenant law
+- The specific code sections cited in the answer, highlighted among the source cards
+- Direct citation links to each section on the official California legislative site
 
 **Example queries:**
-- *"My landlord has not returned my security deposit after 45 days"*
+- *"My landlord hasn't returned my security deposit after 45 days"*
 - *"My heater has been broken for weeks and my landlord won't fix it"*
 - *"My landlord wants to enter my apartment tomorrow with no notice"*
 
