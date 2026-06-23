@@ -89,3 +89,18 @@
   padding: 0.5rem 0 0;
   display: block;
 }
+
+.result-card--cited {
+  border-left: 3px solid var(--accent);
+}
+
+.cited-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  background: rgba(196, 114, 58, 0.12);
+  border: 1px solid rgba(196, 114, 58, 0.2);
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+  letter-spacing: 0.04em;
+}

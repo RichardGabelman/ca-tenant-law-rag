@@ -3,7 +3,7 @@ import "./ResultCard.css";
 
 const PREVIEW_SIZE = 550;
 
-export default function ResultCard({ result, viewMode }) {
+export default function ResultCard({ result, viewMode, cited }) {
   const [expanded, setExpanded] = useState(false);
 
   const isSummary = viewMode === "summary";
@@ -12,13 +12,18 @@ export default function ResultCard({ result, viewMode }) {
   const isLong = displayText.length > PREVIEW_SIZE;
 
   return (
-    <div className="result-card">
+    <div className={`result-card ${cited ? "result-card--cited" : ""}`}>
       <div className="card-header">
         <div className="card-header-left">
           <h2 className="section-badge">
             <span>§</span>
             <span className="section-num">{result.section_num}</span>
           </h2>
+          {cited && (
+            <span className="cited-badge" aria-label="Used in answer">
+              cited
+            </span>
+          )}
           <span className="score-badge">
             {Math.round(result.score * 100)}% match
           </span>
