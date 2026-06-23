@@ -3,26 +3,31 @@ import "./SkeletonLoader.css";
 export default function SkeletonLoader() {
   return (
     <div className="loading-state">
+      <div className="skeleton-answer">
+        <div className="skeleton-answer-header">
+          <div className="skeleton" style={{ height: "12px", width: "52px" }} />
+          <div className="skeleton" style={{ height: "20px", width: "90px" }} />
+        </div>
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div
+            key={i}
+            className="skeleton"
+            style={{ height: "13px", width: `${92 - i * 8}%` }}
+          />
+        ))}
+      </div>
+
       <div className="skeleton-card">
         <div className="skeleton-card-header">
-          <div
-            className="skeleton"
-            style={{ height: "24px", width: "80px", borderRadius: "4px" }}
-          ></div>
-          <div
-            className="skeleton"
-            style={{ height: "14px", width: "180px" }}
-          ></div>
+          <div className="skeleton" style={{ height: "24px", width: "80px", borderRadius: "4px" }} />
+          <div className="skeleton" style={{ height: "14px", width: "180px" }} />
         </div>
         <div className="skeleton-card-body">
           {Array.from({ length: 8 }).map((_, j) => (
             <div
               key={j}
               className="skeleton"
-              style={{
-                height: "12px",
-                width: `${85 + Math.floor((j * 37) % 15)}%`,
-              }}
+              style={{ height: "12px", width: `${85 + Math.floor((j * 37) % 15)}%` }}
             />
           ))}
         </div>
