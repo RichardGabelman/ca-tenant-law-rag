@@ -1,0 +1,48 @@
+.answer-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-accent);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 2rem;
+}
+
+.answer-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.answer-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.answer-citations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.answer-citation-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: rgba(196, 114, 58, 0.12);
+  border: 1px solid rgba(196, 114, 58, 0.25);
+  border-radius: 4px;
+  padding: 0.15rem 0.45rem;
+}
+
+.answer-text {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--text-primary);
+  line-height: 1.75;
+}
