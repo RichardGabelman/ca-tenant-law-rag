@@ -91,7 +91,7 @@
 }
 
 .result-card--cited {
-  border-left: 3px solid var(--accent);
+  border: 1px solid var(--border-accent);
 }
 
 .cited-badge {
