@@ -1,7 +1,6 @@
 .answer-panel {
   background: var(--bg-surface);
   border: 1px solid var(--border-accent);
-  border-left: 3px solid var(--accent);
   border-radius: 10px;
   padding: 1.25rem 1.4rem;
   margin-bottom: 2rem;
