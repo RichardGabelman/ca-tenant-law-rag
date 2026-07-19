@@ -157,14 +157,19 @@ cited_sections must contain only section numbers from the statutes provided abov
 
 
 def call_groq_rag(prompt: str) -> tuple[str, list[str]]:
-    """Call Groq and parse the structured JSON response. Returns (answer, cited_sections)."""
-    response = groq_client.chat.completions.create(
-        model=RAG_MODEL,
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.2,
-        max_tokens=600,
-        response_format={"type": "json_object"},
-    )
+    try:
+        response = groq_client.chat.completions.create(
+            model=RAG_MODEL,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.2,
+            max_tokens=600,
+            response_format={"type": "json_object"},
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=502,
+            detail=f"LLM generation unavailable: {e}",
+        )
 
     raw = str(response.choices[0].message.content)
 
@@ -202,7 +207,11 @@ def ask(request: AskRequest):
         raise HTTPException(status_code=404, detail="No relevant sections found.")
 
     prompt = build_rag_prompt(request.question, sections)
-    answer, cited_sections = call_groq_rag(prompt)
+    try:
+        answer, cited_sections = call_groq_rag(prompt)
+    except HTTPException:
+        answer = "AI-generated summary is temporarily unavailable, but here are the relevant statute sections:"
+        cited_sections = [s.section_num for s in sections]
 
     return AskResponse(
         answer=answer,
