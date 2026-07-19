@@ -13,7 +13,7 @@ load_dotenv()
 CHROMA_DIR = os.getenv("CHROMA_DIR", "../chroma_db")
 ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-RAG_MODEL = os.getenv("RAG_MODEL", "meta-llama/llama-4-scout-17b-16e-instruct")
+RAG_MODEL = os.getenv("RAG_MODEL", "openai/gpt-oss-120b")
 
 origins = [origin.strip() for origin in ALLOWED_ORIGINS.split(",")]
 
