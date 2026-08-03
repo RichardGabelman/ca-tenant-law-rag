@@ -1,12 +1,13 @@
-import os
 import json
+import os
+
 import chromadb
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from groq import Groq
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
-from groq import Groq
-from dotenv import load_dotenv
 
 load_dotenv()
 
